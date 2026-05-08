@@ -2,7 +2,6 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 
-
 X_train = pd.read_csv("data/X_train.csv")
 X_val   = pd.read_csv("data/X_val.csv")
 X_test  = pd.read_csv("data/X_test.csv")
