@@ -1,9 +1,3 @@
-# hyperparameters chosen to try:
-# n_estimators (number of trees)
-# max_depth (max depth of trees)
-# min_samples_leaf (how many samples minimum per leaf)
-# max_features (how many features to consider per tree)
-
 from pandas import read_csv
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -25,8 +19,14 @@ y_test  = read_csv("data/y_test.csv").to_numpy().ravel()
 
 # --- select hyperparameters' range ---
 
+# hyperparameters chosen to try:
+# n_estimators (number of trees)
+# max_depth (max depth of trees)
+# min_samples_leaf (how many samples minimum per leaf)
+# max_features (how many features to consider per tree)
+
 # truncated for training time
-# 4 * 4 * 3 * 3 = 144
+# 4 * 4 * 3 * 3 = 144 combinations
 
 RANDOM_STATE = 42
 N_JOBS = -1
@@ -37,7 +37,6 @@ params: dict = {
     "min_samples_leaf": list(range(1, 12, 5)),
     "max_features": ["sqrt", "log2", None],
 }
-
 
 # --- tune model ---
 
@@ -50,7 +49,6 @@ default_model.fit(X_train, y_train)
 tuned_model = RandomForestClassifier()
 
 best_score = -1
-
 best_params: dict = {
     "n_estimators": 1,
     "max_depth": 1,
