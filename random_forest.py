@@ -7,6 +7,7 @@
 from pandas import read_csv
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score
 
 # --- read data ---
 
@@ -39,8 +40,8 @@ params = {
 
 # --- tune model ---
 
-model = RandomForestClassifier(random_state=42)
-model.fit(X_train, y_train)
+default_model = RandomForestClassifier(random_state=42)
+default_model.fit(X_train, y_train)
 
 tuned_model = RandomForestClassifier()
 
@@ -72,7 +73,8 @@ for chosen_n_estimators in params["n_estimators"]:
                 )
                 tuned_model.fit(X_train, y_train)
 
-                score = tuned_model.score(X_val, y_val)
+                predictions = tuned_model.predict(X_val)
+                score = accuracy_score(y_val, predictions)
 
                 print(f"n_estimators: {chosen_n_estimators}, max_depth: {chosen_max_depth}, min_samples_leaf: {chosen_min_samples_leaf}, max_features: {chosen_max_features}, score: {score*100:.2f}%")
 
@@ -90,22 +92,34 @@ tuned_model = RandomForestClassifier(
 )
 tuned_model.fit(X_train, y_train)
 
+default_validation_predictions = default_model.predict(X_val)
+default_validation_score = accuracy_score(y_val, default_validation_predictions)
+
+tuned_validation_predictions = tuned_model.predict(X_val)
+tuned_validation_score = accuracy_score(y_val, tuned_validation_predictions)
+
 print("\nValidation")
 print("  Default model")
-print(f"    Best score: {model.score(X_val, y_val)*100:.2f}%")
-print(f"    Using parameters: n_estimators: {model.n_estimators}, max_depth: {model.max_depth}, min_samples_leaf: {model.min_samples_leaf}, max_features: {model.max_features}")
+print(f"    Best score: {default_validation_score*100:.2f}%")
+print(f"    Using parameters: n_estimators: {default_model.n_estimators}, max_depth: {default_model.max_depth}, min_samples_leaf: {default_model.min_samples_leaf}, max_features: {default_model.max_features}")
 
 print("  Tuned model")
-print(f"    Best score: {best_score*100:.2f}%")
+print(f"    Best score: {tuned_validation_score*100:.2f}%")
 print(f"    Using parameters: n_estimators: {best_params[0]}, max_depth: {best_params[1]}, min_samples_leaf: {best_params[2]}, max_features: {best_params[3]}")
 
 # --- test model ---
 
+default_test_predictions = default_model.predict(X_test)
+default_test_score = accuracy_score(y_test, default_test_predictions)
+
+tuned_test_predictions = tuned_model.predict(X_test)
+tuned_test_score = accuracy_score(y_test, tuned_test_predictions)
+
 print("\nTesting")
 print("  Default model")
-print(f"    Best score: {model.score(X_test, y_test)*100:.2f}%")
-print(f"    Using parameters: n_estimators: {model.n_estimators}, max_depth: {model.max_depth}, min_samples_leaf: {model.min_samples_leaf}, max_features: {model.max_features}")
+print(f"    Best score: {default_test_score*100:.2f}%")
+print(f"    Using parameters: n_estimators: {default_model.n_estimators}, max_depth: {default_model.max_depth}, min_samples_leaf: {default_model.min_samples_leaf}, max_features: {default_model.max_features}")
 
 print("  Tuned model")
-print(f"    Best score: {tuned_model.score(X_test, y_test)*100:.2f}%")
+print(f"    Best score: {tuned_test_score*100:.2f}%")
 print(f"    Using parameters: n_estimators: {best_params[0]}, max_depth: {best_params[1]}, min_samples_leaf: {best_params[2]}, max_features: {best_params[3]}")
