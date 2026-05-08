@@ -23,7 +23,7 @@ y_test  = read_csv("data/y_test.csv").to_numpy().ravel()
 # n_estimators (number of trees)
 # max_depth (max depth of trees)
 # min_samples_leaf (how many samples minimum per leaf)
-# max_features (how many features to consider per tree)
+# max_features (how many features to consider per split)
 
 # truncated for training time
 # 4 * 4 * 3 * 3 = 144 combinations
