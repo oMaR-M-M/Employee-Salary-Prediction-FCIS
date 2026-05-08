@@ -114,7 +114,7 @@ default_test_score = accuracy_score(y_test, default_test_predictions)
 tuned_test_predictions = tuned_model.predict(X_test)
 tuned_test_score = accuracy_score(y_test, tuned_test_predictions)
 
-print(f'Default model\'s test accuracy: {default_test_score*100:.2f}%')
+print(f'\nDefault model\'s test accuracy: {default_test_score*100:.2f}%')
 print(f'  Using parameters: n_estimators: {default_model.n_estimators}, max_depth: {default_model.max_depth}, min_samples_leaf: {default_model.min_samples_leaf}, max_features: {default_model.max_features}')
 
 print(f'Tuned model\'s test accuracy: {tuned_test_score*100:.2f}%')
