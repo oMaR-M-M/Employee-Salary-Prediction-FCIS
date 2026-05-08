@@ -100,7 +100,9 @@ default_validation_score = accuracy_score(y_val, default_validation_predictions)
 tuned_validation_predictions = tuned_model.predict(X_val)
 tuned_validation_score = accuracy_score(y_val, tuned_validation_predictions)
 
-print(f'Default model\'s validation accuracy: {default_validation_score*100:.2f}%')
+print('\n------------------------------------------')
+
+print(f'\nDefault model\'s validation accuracy: {default_validation_score*100:.2f}%')
 print(f'  Using parameters: n_estimators: {default_model.n_estimators}, max_depth: {default_model.max_depth}, min_samples_leaf: {default_model.min_samples_leaf}, max_features: {default_model.max_features}')
 
 print(f'Tuned model\'s validation accuracy: {tuned_validation_score*100:.2f}%')
