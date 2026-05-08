@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 X_train = pd.read_csv("data/X_train.csv")
 X_val   = pd.read_csv("data/X_val.csv")
