@@ -56,7 +56,7 @@ best_params = [1, 1, 1, None]
 # grid.fit(X_train, y_train)
 # tuned_model = grid.best_estimator_
 # best_score = tuned_model.score(X_val, y_val)
-# best_params = [tuned_model.n_estimators, tuned_model.max_depth, tuned_model.min_samples_leaf]
+# best_params = [tuned_model.n_estimators, tuned_model.max_depth, tuned_model.min_samples_leaf, tuned_model.max_features]
 
 for chosen_n_estimators in params["n_estimators"]:
     for chosen_max_depth in params["max_depth"]:
@@ -92,7 +92,7 @@ tuned_model.fit(X_train, y_train)
 
 print("\nValidation")
 print("  Default model")
-print(f"    Best score: {best_score*100:.2f}%")
+print(f"    Best score: {model.score(X_val, y_val)*100:.2f}%")
 print(f"    Using parameters: n_estimators: {model.n_estimators}, max_depth: {model.max_depth}, min_samples_leaf: {model.min_samples_leaf}, max_features: {model.max_features}")
 
 print("  Tuned model")
