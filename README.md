@@ -88,3 +88,7 @@ jupyter
 | **Omar Hassaan** | [@omarhassaan22](https://github.com/omarhassaan22) | KNN Model |
  
 ---
+
+## Important note
+This project attempts to achieve the highest possible accuracy in the available test data.
+However, it is not designed for high performance or generalization.
