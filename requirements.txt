@@ -6,3 +6,4 @@ category-encoders
 scikit-learn
 xgboost
 catboost
+jupyter
