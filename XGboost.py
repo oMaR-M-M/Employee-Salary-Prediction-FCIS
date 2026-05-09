@@ -79,9 +79,9 @@ print('-'*100)
 
 y_hat = XGboost_model.predict(X_test)
 
-
+y_prob = XGboost_model.predict_proba(X_test)[:, 1]
 acc = accuracy_score(y_test, y_hat)
-auc = roc_auc_score(y_test, y_hat)
+auc = roc_auc_score(y_test, y_prob)
 
 print(f"Accuracy: {acc * 100:.2f}%")
 print(f"AUC: {auc:.4f}")
