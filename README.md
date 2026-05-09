@@ -91,4 +91,4 @@ jupyter
 
 ## Important note
 This project attempts to achieve the highest possible accuracy in the available test data.
-However, it is not designed for high performance or generalization.
+However, it is not designed for high performance or generalization
