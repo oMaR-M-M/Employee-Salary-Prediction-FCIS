@@ -63,13 +63,14 @@ pip install -r requirements.txt
 ### Dependencies
  
 ```
-pandas
 numpy
+pandas
+matplotlib
+seaborn
+category-encoders
 scikit-learn
 xgboost
 catboost
-matplotlib
-seaborn
 jupyter
 ```
  
